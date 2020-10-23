@@ -1,0 +1,40 @@
+</br>
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, permission_flow], local: true) do |form| %>
+  <%= error_messages_for permission_flow %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+  </div>
+  <!-- Fim Cabeçalho -->
+  <!-- Inicio Body -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  permission_flow.new_record? ? 'Salvar Permission Flow' : 'Editar Permission Flow'  %></h3>
+      <h6 class="mb-1">Formulário</h6>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="form-group">
+              <%= form.label :sub_menu_id %>
+              <%= form.select :sub_menu_id , @sub_menus.collect {|sub_menu| [sub_menu.name, sub_menu.id ]}, {include_blank: 'Selecione um sub-menu'},{class:'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :name, "Nome" %>
+              <%= form.text_field :name, class:'form-control'%>
+            </div>
+          </form>
+          <%= form.submit  permission_flow.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', admin_permission_flows_path, class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Body -->
+<% end %>
+

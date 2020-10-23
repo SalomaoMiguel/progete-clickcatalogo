@@ -1,0 +1,2 @@
+tipo(F=Fisica,J=Juridica);CNPJ-CPF;RazaoSocial;NomeFantasia;Codigo;InscricaoEstatual-RG;Logradouro;Numero;Complemento;Cep;Bairro;Cidade;Telefone;Celular;Email
+F;000.000.000-00;Mario Sergio Soares Telles e Silva;Mario Telles;001;47956422;Rua 14;SN;Qd 13 Lt 11;75000000;JK;Anapolis;Go;6233141911;62994315588;mario@progete.com.br

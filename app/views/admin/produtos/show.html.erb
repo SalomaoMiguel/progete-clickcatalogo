@@ -1,0 +1,36 @@
+<br/>
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong class="text-primary"> Produto </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%= @empresa.razao %></h5>
+    <h5 class=" float-right text-primary col-2"> <%=  %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <table class="table table-sm table-bordered ">
+      <thead class="thead-light">
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Especificação</th>
+        <th>Promoção</th>
+        <th>Disponível</th>
+        <th>Deletado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="align-middle text-center fs-0"><%= @produto.descricao %></th>
+        <th class="align-middle text-center fs-0"><%= @produto.especificacao %></th>
+        <th class="align-middle text-center fs-0"><%= @produto.preco %></th>
+        <th class="align-middle text-center fs-0"><span class="badge badge rounded-capsule <%= @produto.promocao ? 'badge-soft-success' : 'badge-soft-danger'%>"><%= @produto.promocao ? 'Sim' : 'Nao' %></span>
+        <th class="align-middle text-center fs-0"><span class="badge badge rounded-capsule <%= @produto.disponivel ? 'badge-soft-success' : 'badge-soft-danger'%>"><%= @produto.disponivel ? 'Sim' : 'Nao' %></span>
+        <th class="align-middle text-center fs-0"><span class="badge badge rounded-capsule <%= @produto.deletado ? 'badge-soft-success' : 'badge-soft-danger'%>"><%= @produto.deletado ? 'Sim' : 'Nao' %></span>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Voltar',  admin_empresa_path(@empresa), class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title><%= @empresa_logado.empresa.razao %></title>
+  <link rel="sortcut icon" href="<%= @empresa_logado.avatar %>" type="image/x-icon" />;
+
+
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'lojista_application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'lojista_application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+
+  <div class="container" data-layout="container">
+    <!--  begin menu lateral-->
+    <nav class="navbar navbar-vertical navbar-expand-xl navbar-light">
+      <div class="d-flex align-items-center">
+        <div class="toggle-icon-wrapper">
+
+          <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-toggle="tooltip" data-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+
+        </div>
+        <%= link_to lojista_panel_visao_geral_path, class: "navbar-brand" do  %>
+        <div class="d-flex align-items-center py-3"><span class="text-sans-serif"><%= @empresa_logado.empresa.plano.plataforma.descricao %></span>
+        </div>
+      <% end %>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content perfect-scrollbar scrollbar">
+          <ul class="navbar-nav flex-column">
+            <li class="nav-item"><%= link_to lojista_panel_visao_geral_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-building"></span></span><span class="nav-link-text"> DashBoard</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_produto_categorias_index_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-bookmark"></span></span><span class="nav-link-text"> Categoria de Produtos</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_produto_index_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-list-alt"></span></span><span class="nav-link-text">Produtos</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_plano_pagamentos_index_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-credit-card"></span></span><span class="nav-link-text"> Planos de Pagamento</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_plano_show_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-file-alt"></span></span><span class="nav-link-text"> Seu Plano</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_panel_editar_loja_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-pager"></span></span><span class="nav-link-text"> Editar Empresa</span>
+                </div>
+              <% end %></li>
+            <li class="nav-item"><%= link_to lojista_panel_editar_perfil_path, class:'nav-link' do %>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user"></span></span><span class="nav-link-text"> Perfil</span>
+                </div>
+              <% end %></li>
+          </ul>
+          <div class="settings px-3 px-xl-0">
+            <div class="navbar-vertical-divider px-0">
+              <hr class="navbar-vertical-hr my-3" />
+            </div>
+            <%= link_to "Ir para loja", home_visualizar_empresa_path(chave: @empresa_logado.empresa.loja), class:'btn btn-sm btn-block btn-purchase mb-3', target: "_blank" %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!--  end menu lateral-->
+    <div class="content">
+      <nav class="navbar navbar-light navbar-glass navbar-top sticky-kit navbar-expand">
+
+        <button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        <a class="navbar-brand mr-1 mr-sm-3" href="index.html">
+          <div class="d-flex align-items-center"><span class="text-sans-serif"><%= @empresa_logado.nome %></span>
+          </div>
+        </a>
+        <ul class="navbar-nav align-items-center d-none d-lg-block">
+          <li class="nav-item">
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-icons ml-auto flex-row align-items-center">
+          <li class="nav-item d-none d-md-block">
+            <a class="nav-link px-3 py-0" href="https://prium.github.io/falcon/v3.0.0-alpha4/" target="_blank"><img src="" alt="" height="35" /></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill icon-indicator" href="#"><span class="fas fa-shopping-cart fs-4" data-fa-transform="shrink-7"></span><span class="notification-indicator-number">1</span></a>
+
+          </li>
+          <li class="nav-item dropdown dropdown-on-hover"><a class="nav-link pr-0" id="navbarDropdownUser" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="avatar avatar-xl">
+              <%= image_tag @empresa_logado.avatar.url, class: 'rounded-circle' %>
+            </div>
+          </a>
+            <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownUser">
+              <div class="bg-white rounded-soft py-2">
+                <a class="dropdown-item font-weight-bold text-warning"><span><%= @empresa_logado.nome %></span></a>
+
+                <div class="dropdown-divider"></div>
+                <%= link_to '', lojista_panel_editar_loja_path, class:'nav-link'  %>
+                <%= link_to 'Editar Empresa', lojista_panel_editar_loja_path, class:'dropdown-item' %>
+                <%= link_to 'Perfil', lojista_panel_editar_perfil_path, class:'dropdown-item' %>
+                <%= link_to 'Categoria Produto', lojista_produto_categorias_index_path, class:'dropdown-item' %>
+                <%= link_to 'Produtos', lojista_produto_index_path, class:'dropdown-item' %>
+                <%= link_to 'Plano Pagamento', lojista_plano_pagamentos_index_path, class:'dropdown-item' %>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-white badge-primary" href="pages/settings.html">Fatura</a>
+                <%= link_to 'Sair', lojista_auth_sair_path, class:'dropdown-item' %>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <% unless notice.blank? %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong><%= notice %></strong>
+          <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+        </div>
+      <% end %>
+        <%= yield %>
+      <footer>
+        <div class="row no-gutters justify-content-between fs--1 mt-4 mb-3">
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">Todos os direitos reservados<span class="d-none d-sm-inline-block"></span><br class="d-sm-none" /> 2020 &reg; <a href="http://www.progete.com">Progete</a></p>
+          </div>
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">v2.7.2</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+</body>
+
+</html>

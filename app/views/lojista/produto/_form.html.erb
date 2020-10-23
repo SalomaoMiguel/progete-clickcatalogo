@@ -1,0 +1,54 @@
+<% if produto.present? %>
+<br/>
+<%= form_with(model: produto, url: {action: produto.new_record? ? :create : :update},  local: true) do |form| %>
+  <%= error_messages_for produto %>
+  <!-- Inicio Cabeçalho -->
+    <!--/.bg-holder-->
+  <!-- Fim Cabeçalho -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  produto.new_record? ? 'Categoria de Produto' : 'Editar Categoria de Produto'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <div class="field">
+            <%= form.label :empresa_id,("Empresa: #{@empresa_logado.empresa.razao}"), class:' font-weight-extra-bold float-right text-primary', style:'font-size: 20px;' %>
+            <%= hidden_field_tag :produto_id,  produto.id %>
+          </div>
+          <div class="form-group">
+            <%= form.label :produto_categorium_id %>
+            <%= form.select :produto_categorium_id , @produto_categoriums.collect {|produto_categorium| [produto_categorium.descricao, produto_categorium.id ]}, {include_blank: 'Selecione uma Categoria'},{class:'form-control'} %>
+          </div>
+          <div class="form-group">
+            <%= form.label :descricao, "Produto" %>
+            <%= form.text_field :descricao, class:'form-control'%>
+          </div>
+          <div class="form-group">
+            <%= form.label :img, " Imagem de produto" %>
+            <%= form.file_field :img, class:'form-control-file btn-primary' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :preco, "Preço" %>
+            <%= form.text_field :preco, class:'form-control'%>
+          </div>
+          <div class="form-group">
+            <%= form.label :promocao, "Promoção?" %>
+            <%= form.select :promocao, options_for_select([["Sim", true], ["Nao", false]], produto.promocao ),{}, {class:'form-control'} %>
+          </div>
+          <div class="form-group">
+            <%= form.label :disponivel, "Disponível?" %>
+            <%= form.select :disponivel, options_for_select([["Sim", true], ["Nao", false]], produto.disponivel ),{}, {class:'form-control'} %>
+          </div>
+          <%= form.submit  produto.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar',lojista_produto_index_path  , class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% else %>
+  <p> Produto não localizado</p>
+<% end %>

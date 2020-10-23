@@ -1,0 +1,55 @@
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, @country, @state, @city, bairro] , local: true) do |form| %>
+  <%= error_messages_for bairro %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  bairro.new_record? ? 'Bairro' : 'Editar Bairro'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="field">
+              <%= form.label :city_id,("Cidade #{@city.name}"), class:' font-weight-extra-bold float-right text-primary', style:'font-size: 20px;' %>
+              <%= form.hidden_field :city_id, value: @city.id %>
+            </div>
+            <div class="form-group">
+              <%= form.label :descricao, "Bairro" %>
+              <%= form.text_field :descricao, class:'form-control'%>
+              <small class="text-muted">Nome do Bairro</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :ref, "Referência" %>
+              <%= form.text_field :ref, class:'form-control'%>
+              <small class="text-muted">Referência</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :latitude, "Latitude" %>
+              <%= form.number_field :latitude, class:'form-control'%>
+              <small class="text-muted">Digite a latitude</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :longitude, "Longitude" %>
+              <%= form.number_field :longitude, class:'form-control'%>
+              <small class="text-muted">Digite a longitude</small>
+            </div>
+          </form>
+          <%= form.submit  bairro.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar',  admin_country_state_city_path(@country, @state, @city, bairro), class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

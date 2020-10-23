@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu: one
+  sub_menu: one
+  permission_action: one
+  name: MyString
+  ajax: false
+  active: false
+
+two:
+  menu: two
+  sub_menu: two
+  permission_action: two
+  name: MyString
+  ajax: false
+  active: false

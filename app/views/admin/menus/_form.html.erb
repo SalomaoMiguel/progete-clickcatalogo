@@ -1,0 +1,45 @@
+</br>
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, menu], local: true) do |form| %>
+  <%= error_messages_for menu %>
+
+  <!-- Inicio Cabeçalho -->
+<div class="card mb-3">
+  <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+  </div>
+  <!--/.bg-holder-->
+
+</div>
+  <!-- Fim Cabeçalho -->
+
+<div class="card mb-3">
+  <div class="card-header">
+    <h3 class="mb-0"><%=  menu.new_record? ? 'Menu' : 'Editar Menu'  %></h3>
+    <h6 class="mb-1 float-right text-primary">Formulário</h6>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+  </div>
+  <div class="card-body bg-light">
+    <div class="row">
+      <div class="col-12">
+        <form>
+          <div class="form-group">
+            <%= form.label :name, "Nome" %>
+            <%= form.text_field :name, class:'form-control'%>
+          </div>
+          <div class="form-group">
+            <%= form.label :class_icon, "Icone" %>
+            <%= form.text_field :class_icon, class:'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :active, "Ativar" %>
+            <%= form.select :active, options_for_select([["Sim", true], ["Nao", false]], menu.active ),{}, {class:'form-control'} %>
+          </div>
+        </form>
+        <%= form.submit  menu.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+        <%= link_to 'Voltar', admin_menus_path, class:'btn btn-warning mb-3' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- metas -->
+  <meta charset="utf-8">
+  <meta name="author" content="99pixel" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="Mombo - Creative Multi-Purpose Template" />
+  <meta name="description" content="Mombo - Creative Multi-Purpose Template" />
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'lojista/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'lojista_application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
+  <!-- title -->
+  <title>Lojista-ClickCatalogo</title>
+  <!-- Favicon -->
+
+
+</head>
+<!-- Body Start -->
+
+<body data-spy="scroll" data-target="#navbar" data-offset="98">
+<!-- page loading -->
+<div id="loading">
+  <div class="load-circle"><span class="one"></span></div>
+</div>
+<!-- end page loading -->
+<!-- Main -->
+<main>
+  <section style="background-image: url(https://previews.123rf.com/images/bloomua/bloomua1310/bloomua131000013/22900949-flat-design-modern-vector-illustration-infographic-concept-of-purchasing-product-via-internet-mobile.jpg);">
+    <div class="container">
+      <div class="row align-items-center justify-content-center min-vh-100">
+        <div class="col-md-6 col-xl-5 p-40px-tb">
+          <div class="p-40px white-bg box-shadow border-radius-10">
+            <div class="p-20px-b text-center">
+              <h3 class="font-w-600 dark-color m-10px-b">Lojista</h3>
+              <p>ClickCatalogo</p>
+              <% unless flash[:error].blank? %>
+                <b style="color: red;"> <%= flash[:error] %></b>
+              <% end %>
+            </div>
+            <%= form_tag(lojista_auth_autenticar_path, method: :post) do %>
+              <div class="form-group">
+                <label class="form-control-label">E-mail</label>
+                <%= email_field :email, nil, required: true, class:'form-control' %>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Senha</label>
+                <%= password_field_tag :senha, nil, required: true, class:'form-control', placeholder:'*******' %>
+              </div>
+              <div class="p-10px-t">
+                <%= submit_tag 'Entrar', nome: nil, class:'m-btn m-btn-theme m-btn-radius w-100' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- main end -->
+<!-- jquery -->
+
+</body>
+<!-- end body -->
+
+</html>
+

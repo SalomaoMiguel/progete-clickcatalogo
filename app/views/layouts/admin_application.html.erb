@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title><%= @usuario_logado.nome %></title>
+  <link rel="sortcut icon" href="<%= @usuario_logado.avatar %>" type="image/x-icon" />;
+
+
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'admin_application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'admin_application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+
+  <div class="container" data-layout="container">
+    <nav class="navbar navbar-vertical navbar-expand-xl navbar-light">
+      <div class="d-flex align-items-center">
+        <div class="toggle-icon-wrapper">
+
+          <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-toggle="tooltip" data-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+
+        </div><a class="navbar-brand" href="index.html">
+        <div class="d-flex align-items-center py-3"><%= image_tag"", width: '20' %><span style="font-size: 20px" class="text-sans-serif">ClickCatalogo</span>
+        </div>
+      </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content perfect-scrollbar scrollbar">
+          <ul class="navbar-nav flex-column">
+
+            <% Menu.all.each do |menu| %>
+            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#navbar_<%= menu.id %>" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home">
+              <div class="d-flex align-items-center"><span class="nav-link-icon"><%= fa_icon(menu.class_icon) %></span></span><span class="nav-link-text"><%= menu.name %></span>
+              </div>
+            </a>
+              <ul class="nav collapse" id="navbar_<%= menu.id %>" data-parent="#navbarVerticalCollapse">
+
+                <% menu.sub_menus.each do |sub_menu| %>
+                <li class="nav-item">
+                  <%= link_to sub_menu.name,  {controller: sub_menu.permission_action.permission_controller.controller_name, action: sub_menu.permission_action.action_name} ,class:'nav-link'  %>
+                </li>
+                <% end %>
+
+              </ul>
+            </li>
+            <% end %>
+
+            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication">
+              <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-unlock-alt"></span></span><span class="nav-link-text">Authentication</span>
+              </div>
+            </a>
+              <ul class="nav collapse" id="authentication" data-parent="#navbarVerticalCollapse">
+                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication-basic" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication-basic">Basic</a>
+                  <ul class="nav collapse" id="authentication-basic" data-parent="#authentication">
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/login.html">Login</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/logout.html">Logout</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/register.html">Register</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/forgot-password.html">Forgot password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/reset-password.html">Reset password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/confirm-mail.html">Confirm mail</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/basic/lock-screen.html">Lock screen</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication-card" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication-card">Card</a>
+                  <ul class="nav collapse" id="authentication-card" data-parent="#authentication">
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/login.html">Login</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/logout.html">Logout</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/register.html">Register</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/forgot-password.html">Forgot password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/reset-password.html">Reset password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/confirm-mail.html">Confirm mail</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/card/lock-screen.html">Lock screen</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication-split" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication-split">Split</a>
+                  <ul class="nav collapse" id="authentication-split" data-parent="#authentication">
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/login.html">Login</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/logout.html">Logout</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/register.html">Register</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/forgot-password.html">Forgot password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/reset-password.html">Reset password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/confirm-mail.html">Confirm mail</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="authentication/split/lock-screen.html">Lock screen</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="authentication/wizard.html">Wizard</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#!" data-toggle="modal" data-target="#authentication-modal">In Modal</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#e-commerce" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="e-commerce">
+              <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-cart-plus"></span></span><span class="nav-link-text">E commerce</span>
+              </div>
+            </a>
+              <ul class="nav collapse" id="e-commerce" data-parent="#navbarVerticalCollapse">
+                <li class="nav-item"><a class="nav-link" href="e-commerce/product-list.html">Product list</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/product-grid.html">Product grid</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/product-details.html">Product details</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/orders.html">Orders</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/order-details.html">Order details</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/customers.html">Customers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/shopping-cart.html">Shopping cart</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="e-commerce/checkout.html">Checkout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="settings px-3 px-xl-0">
+            <div class="navbar-vertical-divider px-0">
+              <hr class="navbar-vertical-hr my-3" />
+            </div><a class="btn btn-sm btn-block btn-purchase mb-3" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">
+            Purchase</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+      <nav class="navbar navbar-light navbar-glass navbar-top sticky-kit navbar-expand">
+
+        <button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        <a class="navbar-brand mr-1 mr-sm-3" href="index.html">
+          <div class="d-flex align-items-center"><%= image_tag"img/illustrations/falcon.png", width: '40' %><span class="text-sans-serif">falcon</span>
+          </div>
+        </a>
+        <ul class="navbar-nav align-items-center d-none d-lg-block">
+        </ul>
+        <ul class="navbar-nav navbar-nav-icons ml-auto flex-row align-items-center">
+          <li class="nav-item d-none d-md-block">
+          </li>
+         <!-- <li class="nav-item dropdown dropdown-on-hover">
+            <a class="nav-link notification-indicator notification-indicator-primary px-0 icon-indicator" id="navbarDropdownNotification" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell fs-4" data-fa-transform="shrink-6"></span></a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-card" aria-labelledby="navbarDropdownNotification">
+              <div class="card card-notification shadow-none" style="max-width: 20rem">
+                <div class="card-header">
+                  <div class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+                      <h6 class="card-header-title mb-0">Notifications</h6>
+                    </div>
+                    <div class="col-auto"><a class="card-link font-weight-normal" href="#">Mark all as read</a></div>
+                  </div>
+                </div>
+                <div class="list-group list-group-flush font-weight-normal fs--1">
+                  <div class="list-group-title border-bottom">NEW</div>
+                  <div class="list-group-item">
+                    <a class="notification notification-flush bg-200" href="#!">
+                      <div class="notification-avatar">
+                        <div class="avatar avatar-2xl mr-3">
+                          <%= image_tag"img/team/1-thumb.png" %>
+                        </div>
+                      </div>
+                      <div class="notification-body">
+                        <p class="mb-1"><strong>Emma Watson</strong> replied to your comment : "Hello world 😍"</p>
+                        <span class="notification-time"><span class="mr-1" role="img" aria-label="Emoji">💬</span>Just now</span>
+
+                      </div>
+                    </a>
+
+                  </div>
+                  <div class="list-group-item">
+                    <a class="notification notification-flush bg-200" href="#!">
+                      <div class="notification-avatar">
+                        <div class="avatar avatar-2xl mr-3">
+                          <div class="avatar-name rounded-circle"><span>AB</span></div>
+                        </div>
+                      </div>
+                      <div class="notification-body">
+                        <p class="mb-1"><strong>Albert Brooks</strong> reacted to <strong>Mia Khalifa's</strong> status</p>
+                        <span class="notification-time"><span class="mr-1 fab fa-gratipay text-danger"></span>9hr</span>
+
+                      </div>
+                    </a>
+
+                  </div>
+                  <div class="list-group-title">EARLIER</div>
+                  <div class="list-group-item">
+                    <a class="notification notification-flush" href="#!">
+                      <div class="notification-avatar">
+                        <div class="avatar avatar-2xl mr-3">
+                          <%= image_tag"img/icons/weather-sm.jpg" %>
+                        </div>
+                      </div>
+                      <div class="notification-body">
+                        <p class="mb-1">The forecast today shows a low of 20&#8451; in California. See today's weather.</p>
+                        <span class="notification-time"><span class="mr-1" role="img" aria-label="Emoji">🌤️</span>1d</span>
+
+                      </div>
+                    </a>
+
+                  </div>
+                </div>
+                <div class="card-footer text-center border-top"><a class="card-link d-block" href="pages/notifications.html">View all</a></div>
+              </div>
+            </div>
+
+          </li>-->
+          <li class="nav-item dropdown dropdown-on-hover"><a class="nav-link pr-0" id="navbarDropdownUser" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="avatar avatar-xl">
+              <%= image_tag @usuario_logado.avatar.url, class: 'rounded-circle' %>
+            </div>
+          </a>
+            <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownUser">
+              <div class="bg-white rounded-soft py-2">
+</span><span class="dropdown-item font-weight-bold text-warning"><%= @usuario_logado.nome %></span>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#!">Set status</a>
+                <a class="dropdown-item" href="pages/profile.html">Profile &amp; account</a>
+                <a class="dropdown-item" href="#!">Feedback</a>
+
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Perfil', admin_setting_perfil_edit_path(@usuario_logado), class:'dropdown-item' %>
+                <%= link_to 'Sair', admin_auth_sair_path, class:'dropdown-item' %>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <% unless notice.blank? %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong><%= notice %></strong>
+          <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+        </div>
+      <% end %>
+      <%= yield %>
+      <footer>
+        <div class="row no-gutters justify-content-between fs--1 mt-4 mb-3">
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">Progete <span class="d-none d-sm-inline-block">| </span><br class="d-sm-none" /> 2020 &copy; <a href="https://themewagon.com">2020</a></p>
+          </div>
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">v2.7.2</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="modal fade modal-fixed-right modal-theme overflow-hidden" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="settings-modal-label" aria-hidden="true" data-options='{"autoShowDelay":3000,"showOnce":true}'>
+      <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content border-0 vh-100 scrollbar perfect-scrollbar">
+          <div class="modal-header modal-header-settings">
+            <div class="z-index-1 py-1 flex-grow-1">
+              <h5 class="text-white" id="settings-modal-label"> <span class="fas fa-palette mr-2 fs-0"></span>Settings</h5>
+              <p class="mb-0 fs--1 text-white opacity-75"> Set your own customized style</p>
+            </div>
+            <button class="close z-index-1" type="button" data-dismiss="modal" aria-label="Close"><span class="font-weight-light" aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body px-card">
+            <h5 class="fs-0">Color Scheme</h5>
+            <p class="fs--1">Choose the perfect color mode for your app. </p>
+            <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+              <div class="btn btn-theme-default custom-control custom-radio custom-radio-success active">
+                <label class="cursor-pointer hover-overlay" for="theme-mode-default"><%= image_tag"img/generic/falcon-mode-default.jpg", class:'w-100' %></label>
+                <label class="cursor-pointer mb-0 d-flex justify-content-center pl-3" for="theme-mode-default">
+                  <input class="custom-control-input" id="theme-mode-default" type="radio" name="colorScheme" checked="checked" value="theme-mode-default" data-page-url="index.html" /><span class="custom-control-label">Light</span>
+                </label>
+              </div>
+              <div class="btn btn-theme-dark custom-control custom-radio custom-radio-success">
+                <label class="cursor-pointer hover-overlay" for="theme-mode-dark"><%= image_tag"img/generic/falcon-mode-dark.jpg", class:'w-100' %></label>
+                <label class="cursor-pointer mb-0 d-flex justify-content-center pl-3" for="theme-mode-dark">
+                  <input class="custom-control-input" id="theme-mode-dark" type="radio" name="colorScheme" value="theme-mode-dark" data-page-url="documentation/dark-mode.html" /><span class="custom-control-label">Dark</span>
+                </label>
+              </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between">
+              <div class="media flex-grow-1"><%= image_tag"img/icons/left-arrow-from-left.svg", class:'mr-2', width: '20' %>
+                <div class="media-body">
+                  <h5 class="fs-0">RTL Mode</h5>
+                  <p class="fs--1 mb-0">Switch your language direction </p>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="mode-rtl" type="checkbox" data-home-url="index.html" data-url="documentation/RTL.html" />
+                <label class="custom-control-label" for="mode-rtl"> </label>
+              </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between">
+              <div class="media flex-grow-1"><%= image_tag"img/icons/arrows-h.svg", width: '20' %>
+                <div class="media-body">
+                  <h5 class="fs-0">Fluid Layout</h5>
+                  <p class="fs--1 mb-0">Toggle container layout system </p>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="mode-fluid" type="checkbox" data-home-url="index.html" data-url="documentation/fluid-layout.html" />
+                <label class="custom-control-label" for="mode-fluid"> </label>
+              </div>
+            </div>
+            <hr />
+            <div class="media">
+              <div class="media-body">
+                <h5 class="fs-0 d-flex align-items-center">Navigation Position <span class="badge badge-pill badge-soft-success fs--2 ml-2">Updated</span></h5>
+                <p class="fs--1 mb-2">Select a suitable navigation system for your web application </p>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input class="custom-control-input" id="option-navbar-vertical" type="radio" name="navbar" value="vertical" checked="checked" data-page-url="components/navbar/vertical.html" />
+                  <label class="custom-control-label" for="option-navbar-vertical">Vertical</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input class="custom-control-input" id="option-navbar-top" type="radio" name="navbar" value="top" data-page-url="components/navbar/top.html" />
+                  <label class="custom-control-label" for="option-navbar-top">Top</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-0">
+                  <input class="custom-control-input" id="option-navbar-combo" type="radio" name="navbar" value="combo" data-page-url="components/navbar/combo.html" />
+                  <label class="custom-control-label" for="option-navbar-combo">Combo</label>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <h5 class="fs-0 d-flex align-items-center">Vertical Navbar Style</h5>
+            <p class="fs--1">Switch between styles for your vertical navbar </p>
+            <div class="btn-group-toggle btn-block btn-group-navbar-style" data-toggle="buttons">
+              <div class="btn-group btn-block">
+                <div class="btn p-0 text-left custom-control custom-radio custom-radio-success mr-2 active">
+                  <label class="cursor-pointer w-100" for="navbar-style-transparent"><%= image_tag"img/generic/default.png", class:'w-100' %></label>
+                  <label class="cursor-pointer d-flex mb-0 pl-3 ml-2" for="navbar-style-transparent">
+                    <input class="custom-control-input" id="navbar-style-transparent" type="radio" name="navbarVertical" checked="checked" data-page-url="index.html" value="transparent" /><span class="custom-control-label"> Transparent</span>
+                  </label>
+                </div>
+                <div class="btn p-0 text-left custom-control custom-radio custom-radio-success mr-2">
+                  <label class="cursor-pointer w-100" for="navbar-style-inverted"><label class="cursor-pointer w-100" for="navbar-style-transparent"><%= image_tag"img/generic/inverted.png", class:'w-100' %></label>
+                  </label>
+                  <label class="cursor-pointer d-flex mb-0 pl-3 ml-2" for="navbar-style-inverted">
+                    <input class="custom-control-input" id="navbar-style-inverted" type="radio" name="navbarVertical" data-page-url="layouts/navbar-vertical-inverted.html" value="inverted" /><span class="custom-control-label"> Inverted</span>
+                  </label>
+                </div>
+              </div>
+              <div class="btn-group btn-block mt-3">
+                <div class="btn p-0 text-left custom-control custom-radio custom-radio-success mr-2">
+                  <label class="cursor-pointer w-100" for="navbar-style-card"><%= image_tag"img/generic/card.png", class:'w-100' %></label>
+                  <label class="cursor-pointer d-flex mb-0 pl-3 ml-2" for="navbar-style-card">
+                    <input class="custom-control-input" id="navbar-style-card" type="radio" name="navbarVertical" data-page-url="layouts/navbar-vertical-card.html" value="card" /><span class="custom-control-label"> Card</span>
+                  </label>
+                </div>
+                <div class="btn p-0 text-left custom-control custom-radio custom-radio-success mr-2">
+                  <label class="cursor-pointer w-100" for="navbar-style-vibrant"><%= image_tag"img/generic/vibrant.png", class:'w-100' %></label>
+                  <label class="cursor-pointer d-flex mb-0 pl-3 ml-2" for="navbar-style-vibrant">
+                    <input class="custom-control-input" id="navbar-style-vibrant" type="radio" name="navbarVertical" data-page-url="layouts/navbar-vertical-vibrant.html" value="vibrant" /><span class="custom-control-label"> Vibrant</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="text-center mt-5"><%= image_tag"img/illustrations/settings.png", class:'mb-4', width:'120' %>
+              <h5>Like What You See?</h5>
+              <p class="fs--1">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p><a class="btn btn-primary" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">Purchase</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+      <div class="modal-dialog mt-6" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header px-5 text-white position-relative modal-shape-header">
+            <div class="position-relative z-index-1">
+              <div>
+                <h4 class="mb-0 text-white" id="authentication-modal-label">Register</h4>
+                <p class="fs--1 mb-0">Please create your free Falcon account</p>
+              </div>
+            </div>
+            <button class="close text-white position-absolute t-0 r-0 mt-1 mr-1" data-dismiss="modal" aria-label="Close"><span class="font-weight-light" aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body py-4 px-5">
+            <form>
+              <div class="form-group">
+                <label for="modal-auth-name">Name</label>
+                <input class="form-control" type="text" id="modal-auth-name" />
+              </div>
+              <div class="form-group">
+                <label for="modal-auth-email">Email address</label>
+                <input class="form-control" type="email" id="modal-auth-email" />
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="modal-auth-password">Password</label>
+                  <input class="form-control" type="password" id="modal-auth-password" />
+                </div>
+                <div class="form-group col-6">
+                  <label for="modal-auth-confirm-password">Confirm Password</label>
+                  <input class="form-control" type="password" id="modal-auth-confirm-password" />
+                </div>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" id="modal-auth-register-checkbox" />
+                <label class="custom-control-label" for="modal-auth-register-checkbox">I accept the <a href="#!">terms </a>and <a href="#!">privacy policy</a></label>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Register</button>
+              </div>
+            </form>
+            <div class="w-100 position-relative mt-5">
+              <hr class="text-300" />
+              <div class="position-absolute absolute-centered t-0 px-3 bg-white text-sans-serif fs--1 text-500 text-nowrap">or register with</div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row no-gutters">
+                <div class="col-sm-6 pr-sm-1"><a class="btn btn-outline-google-plus btn-sm btn-block mt-2" href="#"><span class="fab fa-google-plus-g mr-2" data-fa-transform="grow-8"></span> google</a></div>
+                <div class="col-sm-6 pl-sm-1"><a class="btn btn-outline-facebook btn-sm btn-block mt-2" href="#"><span class="fab fa-facebook-square mr-2" data-fa-transform="grow-8"></span> facebook</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toast bg-white notice" id="cookie-notice" role="alert" data-options='{"autoShow":false,"autoShowDelay":3000,"showOnce":true,"cookieExpireTime":7200000}' data-autohide="false" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body d-flex justify-content-center px-5">
+        <div class="d-lg-flex align-items-center text-center">
+          <button class="close text-shadow-none position-absolute t-0 r-0 p-2 mr-2 mt-2" type="button" data-dismiss="toast" aria-label="Close"><span class="font-weight-medium" aria-hidden="true">×</span></button><%= image_tag"img/icons/cookie.png", width: '20', class:'mr-2' %>
+          <p class="mb-2 mb-lg-0">
+            Our site uses cookies. By continuing to use our site, you agree to our <a class="text-underline" href="components/cookie-notice.html">Cookie Policy</a>.</p>
+          <button class="btn btn-primary btn-sm ml-3" type="button" data-dismiss="toast" aria-label="Close">Ok, I Understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+</body>
+
+</html>

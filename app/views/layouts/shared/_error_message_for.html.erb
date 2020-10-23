@@ -1,0 +1,13 @@
+<% if resolucao.errors.any? %>
+<div id="error_explanation" class="alert alert-danger" role="alert">
+  <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+  <h4 class="alert-heading font-weight-semi-bold"><%= pluralize(resolucao.errors.count, "Erros!") %> </h4>
+  <hr>
+  <ul class="mb-0">
+  <% resolucao.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+</div>
+<% end %>
+

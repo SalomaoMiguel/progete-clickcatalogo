@@ -1,0 +1,71 @@
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, @country, @state, @city, @bairro, cep] , local: true) do |form| %>
+  <%= error_messages_for cep %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><strong><%=  cep.new_record? ? 'Novo Cep' : 'Editar Cep'  %></h3></strong>
+      <h6 class="mb-1 float-right">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="field">
+              <%= form.label :bairro_id,("Bairro: #{@bairro.descricao}"), class:' font-weight-extra-bold text-primary float-right', style:'font-size: 20px;' %>
+              <%= form.hidden_field :bairro_id, value: @bairro.id %>
+            </div>
+            <div class="form-group">
+              <%= form.label :cep, "Cep" %>
+              <%= form.number_field :cep, class:'form-control'%>
+              <small class="text-muted">Digite o cep</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :tipo, "Tipo" %>
+              <%= form.text_field :tipo, class:'form-control'%>
+              <small class="text-muted">Digite o tipo de logadouro</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :logradouro, "Logradouro" %>
+              <%= form.text_field :logradouro, class:'form-control'%>
+              <small class="text-muted">Descricão do logadouro</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :ref, "Referência" %>
+              <%= form.text_field :ref, class:'form-control'%>
+              <small class="text-muted">Digite a referência</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :latitude, "Latitude" %>
+              <%= form.number_field :latitude, class:'form-control'%>
+              <small class="text-muted">Defina a posição de latitude</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :longitude, "Longitude" %>
+              <%= form.number_field :longitude, class:'form-control'%>
+              <small class="text-muted">Digite a posição de longitude </small>
+            </div>
+            <div class="form-group">
+              <%= form.label :ativo, "Ativar" %>
+              <%= form.select :ativo, options_for_select([["Sim", true], ["Nao", false]], cep.ativo ),{}, {class:'form-control'} %>
+              <small class="text-muted">Ativo ou desativo</small>
+            </div>
+          </form>
+          </form>
+          <%= form.submit  cep.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', admin_country_state_city_bairro_path(@country, @state, @city, @bairro, cep), class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa: one
+  descricao: MyString
+  disponivel: false
+
+two:
+  empresa: two
+  descricao: MyString
+  disponivel: false

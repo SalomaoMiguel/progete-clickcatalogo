@@ -1,0 +1,2 @@
+module Lojista::EditEmpresasHelper
+end

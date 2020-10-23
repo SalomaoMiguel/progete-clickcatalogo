@@ -1,0 +1,50 @@
+<!-- Modelo Forms -->
+</br>
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, plano], local: true) do |form| %>
+  <%= error_messages_for plano %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  plano.new_record? ? 'Plano' : 'Editar Plano'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="form-group">
+              <%= form.label :plataforma_id %>
+              <%= form.select :plataforma_id , @plataformas.collect{|plataforma| [plataforma.descricao, plataforma.id ]}, {include_blank: 'Selecione Plataforma'},{class:'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :descricao, "Plano" %>
+              <%= form.text_field :descricao, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :valor, "Valor" %>
+              <%= form.text_field :valor, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :qtd_produto, "Produtos" %>
+              <%= form.number_field :qtd_produto, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :ativo, "Ativo" %>
+              <%= form.select :ativo, options_for_select([["Sim", true], ["Nao", false]], plano.ativo ),{}, {class:'form-control'} %>
+            </div>
+          </form>
+          <%= form.submit  plano.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', admin_planos_path, class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

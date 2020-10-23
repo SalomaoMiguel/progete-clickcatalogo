@@ -1,0 +1,44 @@
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, plataforma], local: true) do |form| %>
+  <%= error_messages_for plataforma %>
+    <!-- Inicio Cabeçalho -->
+    <div class="card mb-3">
+      <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+      </div>
+
+    </div>
+    <!-- Fim Cabeçalho -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3 class="mb-0"><%=  plataforma.new_record? ? 'Plataforma' : 'Editar Plataforma'  %></h3>
+        <h6 class="mb-1 float-right text-primary">Formulário</h6>
+        <h3 class="mb-3 col-12 dropdown-divider"></h3>
+      </div>
+      <div class="card-body bg-light">
+        <div class="row">
+          <div class="col-12">
+            <form>
+              <div class="form-group">
+                <%= form.label :descricao, "Plataforma" %>
+                <%= form.text_field :descricao, class:'form-control'%>
+                <small class="text-muted">Nome da Plataforma</small>
+              </div>
+              <div class="form-group">
+                <%= form.label :desencolvedora, "Desenvolvedora" %>
+                <%= form.text_field :desenvolvedora, class:'form-control'%>
+                <small class="text-muted">Nome da Desenvolvedora</small>
+              </div>
+              <div class="form-group">
+                <%= form.label :cnpj, "CNPJ" %>
+                <%= form.text_field :cnpj, class:'form-control'%>
+                <small class="text-muted">Insira CNPJ</small>
+              </div>
+            </form>
+            <%= form.submit  plataforma.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+            <%= link_to 'Voltar',  admin_plataformas_path, class:'btn btn-warning mb-3' %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

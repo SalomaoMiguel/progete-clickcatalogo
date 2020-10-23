@@ -1,0 +1,84 @@
+</br>
+<div class="card mb-3">
+  <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+  </div>
+  <!--/.bg-holder-->
+
+</div>
+
+<div class="card mb-3">
+
+  <div class="card-header">
+    <h3 class="mb-3"> Permission Flows </h3>
+    <div class="row align-items-center justify-content-between">
+      <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+        <div class="d-none" id="purchases-actions">
+          <div class="input-group input-group-sm">
+            <select class="custom-select cus" aria-label="Bulk actions">
+              <option selected="">Bulk actions</option>
+              <option value="Refund">Refund</option>
+              <option value="Delete">Delete</option>
+              <option value="Archive">Archive</option>
+            </select>
+            <button class="btn btn-falcon-default btn-sm ml-2" type="button">Apply</button>
+          </div>
+        </div>
+        <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+        </div>
+      </div>
+    </div>
+    <% @menus.each do |menu|%>
+      <h5 class="mb-2"> <%= menu.name %> </h5>
+      <% menu.sub_menus.each do |sub_menu| %>
+        <div class="accordion border-x border-top rounded mb-2" id="accordionExample">
+          <div class="card shadow-none border-bottom">
+            <div class="card-header py-0" id="headingOne">
+              <button class="btn btn-link text-decoration-none btn-block py-2 px-0 text-left" type="button" data-toggle="collapse" data-target="#coll_<%= sub_menu.id %>" aria-expanded="true" aria-controls="collapseOne"><span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900"><%= sub_menu.name %></span></button>
+            </div>
+            <div class="collapse" id="coll_<%= sub_menu.id %>" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body pt-2">
+                <table class="table table-sm table-hover ">
+                  <thead>
+                  <tr>
+                    <th class="sort pr-1 align-middle" >Fluxo</th>
+                    <th  class="sort pr-1 align-middle text-center" >Opcoes</th>
+                    <th  class="sort pr-1 align-middle text-center" >Ações</th>
+                    <th  class="sort pr-1 align-middle text-center" >
+                      <div>
+                        <%= link_to new_admin_permission_flow_path, class: "btn-sm btn-primary " do %>
+                          <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span><span class="d-none d-sm-inline-block ml-1">Fluxo</span>
+                        <% end %>
+                      </div>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% sub_menu.permission_flows.each do |permission_flow| %>
+                  <tr>
+                    <td class="align-middle"><%= permission_flow.name %></td>
+                    <td class="align-middle text-center">
+
+                      <div class="align-middle text-center fs-0 btn-sm" role="group" aria-label="Basic example">
+                        <button class="btn-sm btn-warning  " type="button"><%= link_to fa_icon('edit'), edit_admin_permission_flow_path(permission_flow), class:'text-white' %></button>
+                        <button class="btn-sm btn-danger" type="button"><%= link_to fa_icon('trash'), admin_permission_flow_path(permission_flow), method: :delete,data: {confirm: 'Deseja realmente deletar?'}, class:'text-white' %></button>
+                        <button class="btn-sm btn-primary" type="button"><%= link_to "Actions", new_admin_permission_flow_action_path(permission_flow_id: permission_flow.id), class:'text-white' %></button>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center" >
+                      <% permission_flow.permission_flow_actions.each do |permission_flow_action| %>
+                        <%= link_to permission_flow_action.permission_action.caminho, admin_permission_flow_action_path(permission_flow_action), method: :delete, data: {confirm:  "Deseja realmente deletar"}, class:' btn-sm text-white btn-danger'  %>
+                        </br>
+                        <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

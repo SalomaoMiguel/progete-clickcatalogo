@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- metas -->
+  <meta charset="utf-8">
+  <meta name="author" content="99pixel" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="Mombo - Creative Multi-Purpose Template" />
+  <meta name="description" content="Mombo - Creative Multi-Purpose Template" />
+  <!-- title -->
+  <title>Mombo - Creative Multi-Purpose Template</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'option/option', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
+</head>
+<!-- Body Start -->
+
+<body data-spy="scroll" data-target="#navbar-collapse-toggle" data-offset="98">
+<!-- End Preload -->
+<div id="loading">
+  <div class="load-circle"><span class="one"></span></div>
+</div>
+<!-- End Preload -->
+<!-- Header -->
+<header class="header-nav header-white">
+  <div class="fixed-header-bar">
+    <div class="container">
+      <div class="navbar navbar-default navbar-expand-lg main-navbar">
+        <div class="navbar-brand">
+          <a href="index.html" title="Mombo" class="logo">
+            <%= image_tag"img/logos/logo-light.png", class: 'light-logo', alt:"ClickCatalogo" %>
+            <%= image_tag"img/logos/logo-light.png", class:'dark-logo', alt:"ClickCatalogo" %>
+          </a>
+        </div>
+        <div class="navbar-collapse justify-content-end collapse" id="navbar-collapse-toggle">
+          <ul class="nav navbar-nav ml-auto">
+              <li><a class="nav-link" href="#como_funciona">Como Funciona?</a></li>
+              <li><a class="nav-link" href="#planos_precos">Planos e preços</a></li>
+          </ul>
+        </div>
+        <div class="extra-menu d-flex align-items-center">
+          <div class="d-none d-md-block h-btn m-35px-l">
+            <a class="m-btn m-btn-theme2nd m-btn-radius" href="#">Contrate Agora</a>
+          </div>
+          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-collapse-toggle" aria-expanded="false">
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
+<!-- Main -->
+<main>
+  <!-- Home Banner -->
+  <section id="home" class="effect-section theme-g-bg">
+    <div class="effect-img effect bottom"><%= image_tag"home/home-effect--bottom-gray.svg" %></div>
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-12 col-lg-10 text-center">
+          <div class="p-100px-t m-60px-t p-60px-b md-m-40px-t sm-m-20px-t">
+            <h3 class="white-color display-3 m-30px-b">Catálogos online de produtos com pedidos via <b style = "color:green"> Whatsapp </b></h3>
+            <p class="white-color lead m-0px"><b>Comece a vender pela internet hoje mesmo!
+              Um catálogo digital para você cadastrar seus produtos e seus clientes poderem pedir o que quiserem, quando quiserem, de onde estiverem pelo WhatsApp sem intermediários.</b></p>
+          </div>
+        </div>
+        <div class="col-12">
+          <%= image_tag"home/900x550.jpg"%>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Home Banner -->
+
+  <!-- Video div -->
+
+  <section class="p-60px-tb parallax">
+    <div class="container" id="como_funciona">
+      <div class="row md-m-25px-b m-45px-b justify-content-center text-center">
+        <div class="col-lg-8">
+          <h3 class="h1 m-20px-b p-20px-b theme-after after-50px">Crie seu Catálogo e receba pedidos pela internet em menos 5 minutos.</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center" >
+        <div class="col-md-12 col-lg-12 text-center text-md-left m-15px-tb">
+          <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/EBICYJsN5UU" allowfullscreen></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End Video div -->
+
+  <!-- Section Preços -->
+  <section class="section gray-bg" >
+    <div id="planos_precos" class="container">
+      <div class="row md-m-25px-b m-45px-b justify-content-center text-center">
+        <div class="col-lg-8">
+          <h3 class="h1 m-20px-b p-20px-b theme-after after-50px">Planos e Preços</h3>
+          <p class="m-0px font-2">Comece agora a vender pela internet, divulgar seus produtos e promoções, tudo direto pelo WhatsApp sem intermediários.</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <% @planos.each do |plano| %>
+        <div class="col-md-6 col-lg-3 m-15px-tb">
+          <div class="price-table">
+            <div class="pt-head">
+              <% if plano.id == 2  %>
+                <%= label  :plano_id, 'Mais Procurado', class:'msg' %>
+              <% end %>
+              <h5><span>R$ </span><%= plano.valor %></h5>
+            </div>
+            <div class="pt-body">
+              <h6><%= plano.descricao  %></h6>
+              <ul class="list-type-02">
+                <li><i class="fas fa-check"></i> <%= plano.qtd_produto%> Produtos</li>
+                <li><i class="fas fa-check"></i> R$ <%= plano.valor %></li>
+                <li><i class="fas fa-check"></i> Visualizacões</li>
+                <li><i class="fas fa-check"></i> Pedidos</li>
+              </ul>
+            </div>
+            <div class="pt-footer">
+              <% if plano.id == 2  %>
+              <%= link_to 'Contrate Agora', lojista_auth_autenticar_path, class:'m-btn m-btn-theme2nd m-btn-radius' %>
+              <% else %>
+                <%= link_to 'Contrate Agora', lojista_auth_autenticar_path, class:'m-btn m-btn-theme m-btn-radius' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <!-- End Section Preços -->
+
+  <!-- Section -->
+  <section class="p-60px-tb parallax" style="background-image: url(https://wallpaperaccess.com/full/2482250.jpg)">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 col-lg-9 text-center text-md-left m-15px-tb">
+          <h2 class=" white-color m-0px" style="text-align:center; color:white; background: rgb(0,138,199);
+              background: linear-gradient(90deg, rgba(0,138,199,0.67128849830948) 0%, rgba(0,138,199,0.7189075459285277) 35%, rgba(0,138,199,0.6544817756204044) 100%); border-radius: 10px;"><b> Sem fidelidade, queremos te conquistar pela qualidade e não por contratos.</b></h2>
+        </div>
+        <div class="col-md-4 col-lg-3 text-center text-md-right m-15px-tb">
+          <a class="btn-primary btn nav-doubleflip"><b>Contrate Agora</b></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Section -->
+</main>
+<!-- End Main -->
+<!-- Footer-->
+<footer class="gray-bg footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-sm-6 m-15px-tb">
+          <h6>
+            Contato
+          </h6>
+          <ul class="list-unstyled links-dark footer-link-1">
+            <li>
+              Rua 15 de Dezembro, n. 638, Centro, CEP: 75024-070, Anápolis - GO
+            </li>
+            <li>
+              062 3771-3273
+            </li>
+            <li>
+              062 9 9431-5588
+            </li>
+            <li>
+              contato@progete.com.br
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-sm-12 m-15px-tb mr-auto">
+          <div class="m-20px-b">
+            <%= image_tag"img/logos/logo-light.png", class: 'light-logo', alt:"ClickCatalogo" %>
+          </div>
+          <p><b>Sobre nós</b><br/><br/>
+
+            Somos uma empresa especializada em desenvolver projetos de sistemas e tecnologia da informação, de acordo com a exata necessidade do seu negócio.<br/><br/>
+
+            Nós oferecemos a sua empresa as mais diversas soluções em tecnologia da informação, buscando otimizar os processos, melhorar a produtividade, eficiência e eficácia nos negócios, obtendo assim maiores lucros.<br/> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom footer-border-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-right">
+          <ul class="nav justify-content-center justify-content-md-start m-5px-tb links-dark font-small footer-link-1">
+            <li><a href="#">Privace &amp; Policy</a></li>
+            <li><a href="#">Faq's</a></li>
+            <li><a href="#">Get a Quote</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-center text-md-right">
+          <p class="m-0px font-small">© 2019 copyright all right reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+
+<!-- end body -->
+
+</html>

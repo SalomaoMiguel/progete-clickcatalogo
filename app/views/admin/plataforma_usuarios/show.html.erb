@@ -1,0 +1,34 @@
+</br>
+
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong> Usuários </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%= @plataforma.descricao  %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <table class="table table-sm table-bordered ">
+      <thead class="thead-light">
+      <tr>
+        <th>Usuário</th>
+        <th>E-mail</th>
+        <th>Senha</th>
+        <th class=" text-center">Situação</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="white-space-nowrap"><%= @plataforma_usuario.nome %></th>
+        <th class="white-space-nowrap"><%= @plataforma_usuario.email %></th>
+        <th class="white-space-nowrap">****</th>
+        <td class=" text-center"><span class="badge badge rounded-capsule <%= @plataforma_usuario.ativo ? 'badge-soft-success' : 'badge-soft-danger'%>"><%= @plataforma_usuario.ativo ? 'Ativado' : 'Desativado' %></span>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Voltar',  admin_plataforma_path(@plataforma), class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+
+    </div>
+
+  </div>
+</div>

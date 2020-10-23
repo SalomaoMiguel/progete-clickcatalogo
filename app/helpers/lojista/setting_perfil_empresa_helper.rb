@@ -1,0 +1,2 @@
+module Lojista::SettingPerfilEmpresaHelper
+end

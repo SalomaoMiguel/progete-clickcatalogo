@@ -1,0 +1,36 @@
+</br>
+
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong> Cep </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%= @bairro.descricao %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <table class="table table-sm table-bordered ">
+      <thead class="thead-light">
+      <tr>
+        <th>Cep</th>
+        <th><%= @cep.tipo %></th>
+        <th> Referência</th>
+        <th> Latitude</th>
+        <th> Longitude</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="white-space-nowrap"><%= @cep.cep %></th>
+        <th class="white-space-nowrap"><%= @cep.logradouro %></th>
+        <th class="white-space-nowrap"><%= @cep.ref %></th>
+        <th class="white-space-nowrap"><%= @cep.latitude %></th>
+        <th class="white-space-nowrap"><%= @cep.longitude %></th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Voltar',  admin_country_state_city_bairro_path(@country, @state, @city, @bairro), class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+
+    </div>
+
+  </div>
+</div>

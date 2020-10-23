@@ -1,0 +1,32 @@
+</br>
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong class="text-primary"> Usuário Empresa </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%= @empresa.razao %></h5>
+    <h5 class=" float-right text-primary col-2"> <%= %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <table class="table table-sm table-bordered ">
+      <thead class="thead-light">
+      <tr>
+        <th>Usuário</th>
+        <th>E-mail</th>
+        <th>Senha</th>
+        <th>Telefone</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="white-space-nowrap"><%= @empresa_usuario.nome %></th>
+        <th class="white-space-nowrap"><%= @empresa_usuario.email %></th>
+        <th class="white-space-nowrap">****</th>
+        <th class="white-space-nowrap"><%= @empresa_usuario.telefone %></th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Voltar',  admin_empresa_path(@empresa), class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+    </div>
+  </div>
+</div>

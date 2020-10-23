@@ -1,0 +1,70 @@
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, @country, @state, city] , local: true) do |form| %>
+  <%= error_messages_for city %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  city.new_record? ? 'Cidade' : 'Editar Cidade'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="field">
+                <%= form.label :state_id,("Estado #{@state.name}"), class:' font-weight-extra-bold float-right text-primary', style:'font-size: 20px;' %>
+                <%= form.hidden_field :state_id, value: @state.id %>
+            </div>
+            <div class="form-group">
+              <%= form.label :name, "Cidade" %>
+              <%= form.text_field :name, class:'form-control'%>
+              <small class="text-muted">nome da Cidade</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :ref, "Referência" %>
+              <%= form.text_field :ref, class:'form-control'%>
+              <small class="text-muted">Referência</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :code, "Código" %>
+              <%= form.text_field :code, class:'form-control'%>
+              <small class="text-muted">Código da Cidade</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :ddd, "DDD" %>
+              <%= form.text_field :ddd, class:'form-control'%>
+              <small class="text-muted">Código DDD</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :latitude, "Latitude" %>
+              <%= form.number_field :latitude, class:'form-control'%>
+              <small class="text-muted">Digite a Latitude</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :longitude, "Longitude" %>
+              <%= form.number_field :longitude, class:'form-control'%>
+              <small class="text-muted">Digite a longitude</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :active, "Ativar" %>
+              <%= form.select :active, options_for_select([["Sim", true], ["Nao", false]], city.active ),{}, {class:'form-control'} %>
+              <small class="text-muted">Ativado ou Desativado</small>
+            </div>
+          </form>
+          <%= form.submit  city.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar',  admin_country_state_path(@country, @state, city), class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

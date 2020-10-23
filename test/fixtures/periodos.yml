@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  periodo: MyString
+  dt_ini: 2020-10-15
+  dt_fin: 2020-10-15
+  plataforma: one
+
+two:
+  periodo: MyString
+  dt_ini: 2020-10-15
+  dt_fin: 2020-10-15
+  plataforma: two

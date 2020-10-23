@@ -1,0 +1,62 @@
+</br>
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong> Empresa </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%=  %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <div class=" container">
+      <div class=" row">
+        <div class="col-sm-6">
+          <b>Razão:</b>
+          <p><%= @empresa.razao %></p>
+          <b>Cnpj / Cpf:</b>
+          <p><%= @empresa.cnpj_cpf %></p>
+          <b>Endereço:</b>
+          <p><%= @empresa.endereco %></p>
+          <b>Cidade:</b>
+          <p><%= @empresa.cidade %></p>
+          <b>Telefone:</b>
+          <p><%= @empresa.telefone %></p>
+          <b>Celular:</b>
+          <p><%= @empresa.celular %></p>
+          <b>E-mail:</b>
+          <p><%= @empresa.email %></p>
+          <b>Site:</b>
+          <p><%= @empresa.web_site %></p>
+        </div>
+        <div class="col-sm-6">
+          <b>loja:</b>
+          <p><%= @empresa.loja %></p>
+          <b>Logo:</b>
+          <p><%= @empresa.logomarca %></p>
+          <b>Cor:</b>
+          <p><%= @empresa.cor_layout %></p>
+          <b>Fonte:</b>
+          <p><%= @empresa.cor_fonte %></p>
+          <b>Sobre:</b>
+          <p><%= @empresa.sobre %></p>
+          <b>Facebook:</b>
+          <p><%= @empresa.fb_url %></p>
+          <b>Instagram:</b>
+          <p><%= @empresa.insta_url %></p>
+          <b>Pinterest:</b>
+          <p><%= @empresa.pint_url %></p>
+          <b>Seguimento:</b>
+          <p><%=@empresa.empresa_seguimento.descricao %></p>
+          <b>Plano:</b>
+          <p><%=@empresa.plano.descricao %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'Voltar',  admin_empresas_path, class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+    </div>
+  </div>
+</div>
+
+<%= render 'admin/empresa_usuarios/index' %>
+<%= render 'admin/produto_categoria/index' %>
+<%= render 'admin/plano_pagamentos/index' %>
+<%= render 'admin/produtos/index' %>

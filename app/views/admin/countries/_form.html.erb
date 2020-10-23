@@ -1,0 +1,52 @@
+</br>
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+  <%= form_with(model: [:admin, country], local: true) do |form| %>
+    <%= error_messages_for country %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  country.new_record? ? 'Novo País' : 'Editar País'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="form-group">
+              <%= form.label :name, "País" %>
+              <%= form.text_field :name, class:'form-control'%>
+              <small class="text-muted">Nome do País</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :acronym, "Sigla" %>
+              <%= form.text_field :acronym, class:'form-control'%>
+              <small class="text-muted">Sigla do País</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :code, "Código" %>
+              <%= form.text_field :code, class:'form-control'%>
+              <small class="text-muted">Código do País</small>
+            </div>
+            <div class="form-group">
+              <%= form.label :active, "Ativar" %>
+              <%= form.select :active, options_for_select([["Sim", true], ["Nao", false]], country.active ),{}, {class:'form-control'} %>
+              <small class="text-muted">Ativar ou Desativar</small>
+            </div>
+          </form>
+          <%= form.submit  country.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', admin_countries_path, class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

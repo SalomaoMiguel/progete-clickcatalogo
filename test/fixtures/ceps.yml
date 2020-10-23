@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bairro: one
+  ref: 1
+  tipo: MyString
+  logadouro: MyString
+  latitude: 9.99
+  longitude: 9.99
+  active: false
+
+two:
+  bairro: two
+  ref: 1
+  tipo: MyString
+  logadouro: MyString
+  latitude: 9.99
+  longitude: 9.99
+  active: false

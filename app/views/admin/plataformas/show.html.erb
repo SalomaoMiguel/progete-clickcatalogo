@@ -1,0 +1,34 @@
+</br>
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="float-left "><strong class="text-primary"> Plataforma </strong></h4>
+    <h5 class=" float-right text-primary  border-sm-bottom border-200"><%=  %></h5>
+    <h5 class=" float-right text-primary col-2"> <%=  %></h5>
+    <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    <table class="table table-sm table-bordered ">
+      <thead class="thead-light">
+      <tr>
+        <th>Descrição</th>
+        <th>Desenvolvedora</th>
+        <th>CNPJ</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="white-space-nowrap"><%= @plataforma.descricao %></th>
+        <th class="white-space-nowrap"><%= @plataforma.desenvolvedora %></th>
+        <th class="white-space-nowrap"><%= @plataforma.cnpj %></th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Voltar',  admin_plataformas_path, class:'btn btn-sm btn-warning' %>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+
+    </div>
+
+  </div>
+</div>
+
+<%= render 'admin/plataforma_usuarios/index' %>

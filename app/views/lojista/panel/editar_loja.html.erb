@@ -1,0 +1,93 @@
+<br/>
+<%= form_with(model: @empresa_logado.empresa, url: {action: :editar_loja}, local: true, html: { multipart: true } ) do |form| %>
+  <%= error_messages_for  @empresa_logado.empresa %>
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%= 'Editar Empresa'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-6">
+          <form>
+            <div class="form-group">
+              <%= form.label :logomarca, " Logomarca" %>
+              <%= form.file_field :logomarca, class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :empresa_seguimento_id , "Seguimento" %>
+              <%= form.select :empresa_seguimento_id,  @empresa_seguimentos.collect {|empresa_seguimento| [empresa_seguimento.descricao, empresa_seguimento.id]}, {include_blank: "Selecione Seguimento"}, {class:'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :plano_id , "Plano" %>
+              <%= form.select :plano_id,  @planos.collect {|plano| [plano.descricao, plano.id]}, {include_blank: "Selecione Plano"}, {class:'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :razao, "Razão" %>
+              <%= form.text_field :razao, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :cnpj_cpf, "Cpf/Cnpj" %>
+              <%= form.text_field :cnpj_cpf, class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :endereco , "Endereço" %>
+              <%= form.text_field :endereco , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :cidade , "Cidade" %>
+              <%= form.text_field :cidade , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :email , "E-mail" %>
+              <%= form.text_field :email , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :celular , "Celular" %>
+              <%= form.text_field :celular , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :telefone , "Telefone" %>
+              <%= form.text_field :telefone , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :web_site , "Site" %>
+              <%= form.text_field :web_site , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :sobre , "Sobre" %>
+              <%= form.text_area :sobre , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :cor_layout , "Cor Layout" %>
+              <%= form.text_field :cor_layout , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :cor_fonte , "Cor Fonte" %>
+              <%= form.text_field :cor_fonte , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :fb_url , "Facebook Url" %>
+              <%= form.text_field :fb_url , class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :insta_url , "Instagram Url" %>
+              <%= form.text_field :insta_url, class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :pint_url , "Pinterest Url" %>
+              <%= form.text_field :pint_url, class:'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :loja , "Loja" %>
+              <%= form.text_field :loja, class:'form-control' %>
+            </div>
+          </form>
+          <%= form.submit 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', lojista_panel_visao_geral_path, class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

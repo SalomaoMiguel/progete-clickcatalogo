@@ -1,0 +1,2 @@
+module Lojista::PlanoHelper
+end

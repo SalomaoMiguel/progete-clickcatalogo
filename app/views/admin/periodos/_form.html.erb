@@ -1,0 +1,49 @@
+</br>
+<div class="bg-holder d-none d-lg-block stiviebg-card " style="background-image:url(../assets/img/illustrations/corner-4.png);">
+</div>
+<%= form_with(model: [:admin, periodo], local: true) do |form| %>
+  <%= error_messages_for periodo %>
+
+  <!-- Inicio Cabeçalho -->
+  <div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+    </div>
+    <!--/.bg-holder-->
+
+  </div>
+  <!-- Fim Cabeçalho -->
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3 class="mb-0"><%=  periodo.new_record? ? 'Período' : 'Editar Período'  %></h3>
+      <h6 class="mb-1 float-right text-primary">Formulário</h6>
+      <h3 class="mb-3 col-12 dropdown-divider"></h3>
+    </div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="form-group">
+              <%= form.label :plataforma_id, "Plataforma" %>
+              <%= form.select :plataforma_id, @plataformas.collect{|plataforma| [plataforma.descricao, plataforma.id]}, {include_blank: 'Selecione Plataforma'}, {class:'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :periodo, "Período" %>
+              <%= form.date_select :periodo, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :dt_ini, "Data Inicial" %>
+              <%= form.date_select :dt_ini, class:'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= form.label :dt_fin, "Data Final" %>
+              <%= form.date_select :dt_fin, class:'form-control'%>
+            </div>
+          </form>
+          <%= form.submit  periodo.new_record? ? 'Salvar' : 'Editar', class:'btn btn-primary mb-3'  %>
+          <%= link_to 'Voltar', admin_periodos_path, class:'btn btn-warning mb-3' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

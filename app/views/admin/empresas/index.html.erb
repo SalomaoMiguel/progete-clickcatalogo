@@ -1,0 +1,86 @@
+</br>
+<div class="card mb-1">
+
+</div>
+
+<div class="card ">
+
+  <div class="card-header">
+    <h3 class="mb-0 text-center"> Empresas </h3>
+    <div class="dropdown-divider mb-3"></div>
+    <div class="row align-items-center justify-content-between">
+      <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+        <div class="d-none" id="purchases-actions">
+          <div class="input-group input-group-sm">
+            <select class="custom-select cus" aria-label="Bulk actions">
+              <option selected="">Bulk actions</option>
+              <option value="Refund">Refund</option>
+              <option value="Delete">Delete</option>
+              <option value="Archive">Archive</option>
+            </select>
+            <button class="btn btn-falcon-default btn-sm ml-2" type="button">Apply</button>
+          </div>
+        </div>
+        <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+          <div>
+            <%= link_to new_admin_empresa_path, class: "btn btn-primary btn-sm" do %>
+              <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span><span class="d-none d-sm-inline-block ml-1">Novo</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body px-0 pt-0">
+    <div class="dashboard-data-table">
+      <table class="table table-sm data-table table-dashboard fs--1 table-bordered" data-options='{"responsive":false,"pagingType":"simple","lengthChange":false,"searching":false,"pageLength":8,"columnDefs":[{"targets":[0,6],"orderable":false}],"language":{"info":"_START_ to _END_ Items of _TOTAL_ — <a href=\"#!\" class=\"font-weight-semi-bold\"> view all <span class=\"fas fa-angle-right\" data-fa-transform=\"down-1\"></span> </a>"},"buttons":["copy","excel"]}'>
+        <thead class="bg-200 text-900">
+        <tr>
+          <th class="no-sort pr-1 align-middle data-table-row-bulk-select">
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input checkbox-bulk-select" id="checkbox-bulk-purchases-select" type="checkbox" data-checkbox-body="#purchases" data-checkbox-actions="#purchases-actions" data-checkbox-replaced-element="#dashboard-actions" />
+              <label class="" for="checkbox-bulk-purchases-select"></label>
+            </div>
+          </th>
+          <th class="sort pr-1 align-middle">Logo</th>
+          <th class="sort pr-1 align-middle">Plano</th>
+          <th class="sort pr-1 align-middle">Razão</th>
+          <th class="sort pr-1 align-middle">Cpf/Cnpj</th>
+          <th class="sort pr-1 align-middle">Seguimento</th>
+          <th class="sort pr-1 align-middle">Loja</th>
+          <th class="no-sort pr-1 align-middle data-table-row-action"></th>
+        </tr>
+        </thead>
+        <tbody id="purchases">
+        <% @empresas.each do |empresa| %>
+          <tr class="btn-reveal-trigger">
+            <td class="align-middle">
+              <div class="custom-control custom-checkbox">
+                <input class="custom-control-input checkbox-bulk-select-target" type="checkbox" id="checkbox-0" />
+                <label class="" for="checkbox-0"></label>
+              </div>
+            </td>
+            <th><%= image_tag empresa.logomarca.url, class: 'card-img-top', style:'width: 80px; height:80px;' %></th>
+            <th class="align-middle"><%= empresa.plano.descricao %></th>
+            <th class="align-middle"><%= empresa.razao %></th>
+            <th class="align-middle"><%= empresa.cnpj_cpf %></th>
+            <th class="align-middle"><%= empresa.empresa_seguimento.descricao %></th>
+            <th class="align-middle"><%= empresa.loja %></th>
+            <td class="align-middle white-space-nowrap">
+              <div class="dropdown text-sans-serif">
+                <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0" data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
+                <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                  <%= link_to 'Visualizar', [:admin, empresa], class:'dropdown-item text-secondary' %>
+                  <div class="bg-white py-2"><%= link_to 'Editar', edit_admin_empresa_path(empresa), class:'dropdown-item text-warning' %>
+                    <div class="dropdown-divider"></div><%= link_to 'Deletar', admin_empresa_path(empresa), method: :delete, data: { confirm: 'Deseja realmente deletar?' }, class:'dropdown-item text-danger' %>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
