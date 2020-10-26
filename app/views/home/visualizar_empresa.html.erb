@@ -39,137 +39,140 @@
   <!-- Button fluter Whats app end-->
   <!-- title -->
   <title><%= @empresa.loja if @empresa.present? %></title>
-  <link rel="sortcut icon" href="<%= @empresa.logomarca if @empresa.present? %>" type="image/x-icon" />;
-
+  <link rel="sortcut icon" href="<%= @empresa.logomarca if @empresa.present? %>" type="image/x-icon" />
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <%= stylesheet_link_tag 'star/styles', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag    'option/option', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
+
 </head>
 <!-- Body Start -->
 
 <body data-spy="scroll" data-target="#navbar-collapse-toggle" data-offset="98">
 <% if @empresa.present? %>
-<!-- Header -->
-<header class="header-nav header-white mb-3" >
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style= "background-color: <%= @empresa.cor_layout%>!important; color: <%= @empresa.cor_fonte %>!important; ">
-    <%= image_tag @empresa.logomarca.url, class:'logo', style:'width:100px; height:100px; margin-left: 105px;' %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10" >
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <%= link_to 'Ínicio', home_visualizar_empresa_path(chave: @empresa.loja), class: 'nav-link' , style: "color: #{@empresa.cor_fonte}!important;"%>
-        </li>
-        <% @empresa.produto_categoriums.where(disponivel: true).each do |categoria| %>
-          <% params[:categorium_id] = categoria.id %>
-        <li class="nav-item active">
-          <%= link_to categoria.descricao, home_visualizar_empresa_path(chave: @empresa.loja, cat_id: categoria.id), class: 'nav-link', style: "color: #{@empresa.cor_fonte}!important;" %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-    <a style= "color: <%= @empresa.cor_fonte %>!important; ", class="btn-lg btn-primary" href="#footer_contato">Contato</a>
-  </nav>
-</header>
-<!-- Header End -->
-<!-- Main -->
-<main role="main" class="mb-03">
-  <div class="">
-    <div class="container ">
-      <div class=" row flex-row">
-        <div class="col-md-10 card-columns ">
-          <% @produtos.each do |produto| %>
-          <div class="card mb-4 shadow-sm" >
-            <%= image_tag produto.img.url, class:'bd-placeholder-img card-img-top', style:'width:100%; height:180px;' %>
-            <div class="card-body">
-              <div class="card-header text-center"><h4><%= produto.descricao %></h4></div>
-              <div class="card-body text-primary">
-                <h2 class="card-text text-primary">R$ <%= produto.preco %></h2>
+  <!-- Header -->
+  <header class="header-nav header-white"  >
+    <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style= "background-color: <%= @empresa.cor_layout%>!important; color: <%= @empresa.cor_fonte %>!important; ">
+      <div class="container">
+        <%= link_to "#{@empresa.loja}", home_visualizar_empresa_path, class:'navbar-brand js-scroll-trigger'%>
+        <%= image_tag @empresa.logomarca.url, class:'navbar-brand js-scroll-trigger masthead-avatar' , style:'height: 60px; height:60px;'%>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-n9 ">
+            <li class="nav-item mx-0 mx-lg-1 te"><%= link_to 'Ínicio', home_visualizar_empresa_path(chave: @empresa.loja), class: 'nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger' , style: "color: #{@empresa.cor_fonte}!important;"%></li>
+            <% @empresa.produto_categoriums.where(disponivel: true).each do |categoria| %>
+                <% params[:categorium_id] = categoria.id %>
+              <li class="nav-item mx-0 mx-lg-1">
+                <%= link_to categoria.descricao, home_visualizar_empresa_path(chave: @empresa.loja, cat_id: categoria.id), class: 'nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger', style: "color: #{@empresa.cor_fonte}!important;" %>
+              </li>
+            <% end %>
+            <li class="nav-item mx-0 mx-lg-1"><a style= "color: <%= @empresa.cor_fonte %>!important; ", class="btn-group-sm nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#footer_contato">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Header End -->
+  <!-- Main -->
+  <main role="main" class="mb-03">
+    <div class="">
+      <div class="container ">
+        <div class=" row flex-row">
+          <div class="col-md-10 card-columns ">
+            <% @produtos.each do |produto| %>
+              <div class="card mb-4 shadow-sm" >
+                <%= image_tag produto.img.url, class:'bd-placeholder-img card-img-top', style:'width:100%; height:180px;' %>
+                <div class="card-body">
+                  <div class="card-header text-center"><h4><%= produto.descricao %></h4></div>
+                  <div class="card-body text-primary">
+                    <h2 class="card-text text-primary">R$ <%= produto.preco %></h2>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                  </div>
+                </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
-            </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
       </div>
     </div>
-  </div>
 
-</main>
-<!-- End Main -->
-<!-- Footer-->
-<footer class="gray-bg footer" id="footer_contato" style= "background-color: <%= @empresa.cor_layout%>!important; color: <%= @empresa.cor_fonte %>;">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 m-15px-tb mr-auto">
-          <div class="m-20px-b">
-            <%= image_tag @empresa.logomarca.url, style:'height:60px; width: 60px;', alt:"ClickCatalogo"  %>
+  </main>
+  <!-- End Main -->
+  <!-- Footer-->
+  <footer class="gray-bg footer" id="footer_contato" style= "background-color: <%= @empresa.cor_layout%>!important; color: <%= @empresa.cor_fonte %>;">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 m-15px-tb mr-auto">
+            <div class="m-20px-b">
+              <%= image_tag @empresa.logomarca.url, style:'height:60px; width: 60px;', alt:"ClickCatalogo"  %>
+            </div>
+            <p><b>Sobre nós</b><br/><br/>
+              <%= @empresa.sobre %>
+            </p>
           </div>
-          <p><b>Sobre nós</b><br/><br/>
-           <%= @empresa.sobre %>
-          </p>
-        </div>
-        <div class="col-lg-6 col-sm-6 m-15px-tb" id="contato" >
-          <h6 style= "color: <%= @empresa.cor_fonte %>!important;">
-            Contato
-          </h6>
-          <ul class="list-unstyled links-dark footer-link-1">
-            <li>
-              <%= @empresa.endereco %>
-            </li>
-            <li>
-              <%= @empresa.telefone %>
-            </li>
-            <li>
-              <%= @empresa.celular %>
-            </li>
-            <li>
-              <%= @empresa.email %>
-            </li>
-          </ul>
+          <div class="col-lg-6 col-sm-6 m-15px-tb" id="contato" >
+            <h6 style= "color: <%= @empresa.cor_fonte %>!important;">
+              Contato
+            </h6>
+            <ul class="list-unstyled links-dark footer-link-1">
+              <li>
+                <%= @empresa.endereco %>
+              </li>
+              <li>
+                <%= @empresa.telefone %>
+              </li>
+              <li>
+                <%= @empresa.celular %>
+              </li>
+              <li>
+                <%= @empresa.email %>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom footer-border-dark">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-center text-md-right">
-          <ul class="nav justify-content-center justify-content-md-start m-5px-tb links-dark font-small footer-link-1">
-            <% unless @empresa.fb_url.blank? %>
-              <li ><a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.fb_url %>"><button type="button" class="btn btn-fb" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-facebook-f pr-1" ></i> Facebook</button></a></li>
-            <% end %>
-            <% unless @empresa.insta_url.blank? %>
-              <li><a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.insta_url %>"><button type="button" class="btn btn-ins" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-instagram pr-1" ></i> Instagram</button></a></li>
-            <% end %>
-            <% unless @empresa.pint_url.blank? %>
-              <li> <a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.pint_url %>"><button type="button" class="btn btn-pin" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-pinterest pr-1"></i>Pinterest</button></a></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="col-md-6 text-center text-md-right">
-          <p class="m-0px font-small">© <%= Time.zone.today %> copyright all right reserved</p>
+    <div class="footer-bottom footer-border-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-right">
+            <ul class="nav justify-content-center justify-content-md-start m-5px-tb links-dark font-small footer-link-1">
+              <% unless @empresa.fb_url.blank? %>
+                <li ><a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.fb_url %>"><button type="button" class="btn btn-fb" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-facebook-f pr-1" ></i> Facebook</button></a></li>
+              <% end %>
+              <% unless @empresa.insta_url.blank? %>
+                <li><a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.insta_url %>"><button type="button" class="btn btn-ins" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-instagram pr-1" ></i> Instagram</button></a></li>
+              <% end %>
+              <% unless @empresa.pint_url.blank? %>
+                <li> <a style= "color: <%= @empresa.cor_fonte %>!important;" target="_blank" href="<%= @empresa.pint_url %>"><button type="button" class="btn btn-pin" style= "color: <%= @empresa.cor_fonte %>!important;"><i class="fab fa-pinterest pr-1"></i>Pinterest</button></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="col-md-6 text-center text-md-right">
+            <p class="m-0px font-small">© <%= Time.zone.today %> copyright all right reserved</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <a href="https://api.whatsapp.com/send?phone=55<%= @empresa.celular%>&text=ClickCatalogo"
-       target="_blank">
-      <img  class="whatsapp " src="https://images.tcdn.com.br/static_inst/integracao/imagens/whatsapp.png" />
-    </a>
-  </div>
-</footer>
-  <%else %>
-    <p> Nenhuma empresa encontrada</p>
-  <%end %>
+    <div>
+      <a href="https://api.whatsapp.com/send?phone=55<%= @empresa.celular%>&text=ClickCatalogo"
+         target="_blank">
+        <img  class="whatsapp " src="https://images.tcdn.com.br/static_inst/integracao/imagens/whatsapp.png" />
+      </a>
+    </div>
+  </footer>
+<%else %>
+  <p> Nenhuma empresa encontrada</p>
+<%end %>
+<%= javascript_include_tag 'star/scripts', 'data-turbolinks-track': 'reload' %>
 </body>
 
 <!-- end body -->

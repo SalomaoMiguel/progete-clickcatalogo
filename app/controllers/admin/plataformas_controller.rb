@@ -5,7 +5,11 @@ class Admin::PlataformasController < ApplicationController
   # GET /plataformas
   # GET /plataformas.json
   def index
-    @plataformas = Plataforma.all
+    if params[:query] == ''
+      @plataformas = Plataforma.all
+    else
+      @plataformas = Plataforma.where('descricao LIKE ?', "%#{params[:query]}%")
+    end
   end
 
   # GET /plataformas/1

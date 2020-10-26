@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_180138) do
+ActiveRecord::Schema.define(version: 2020_10_26_132904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,11 +107,11 @@ ActiveRecord::Schema.define(version: 2020_10_22_180138) do
     t.bigint "plano_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cor_fonte", default: "#000000", null: false
     t.string "logomarca_file_name"
     t.string "logomarca_content_type"
     t.integer "logomarca_file_size"
     t.datetime "logomarca_updated_at"
-    t.string "cor_fonte", default: "#000000", null: false
     t.index ["empresa_seguimento_id"], name: "index_empresas_on_empresa_seguimento_id"
     t.index ["plano_id"], name: "index_empresas_on_plano_id"
   end
